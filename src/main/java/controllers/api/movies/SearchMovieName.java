@@ -73,10 +73,9 @@ public class SearchMovieName extends HttpServlet {
 
 		JSONArray resultsArray = movie.getJSONArray("results");
 
-		for (int i = 0; i < resultsArray.length(); i++) {
-			JSONObject currResult = resultsArray.getJSONObject(i);
-			String image = currResult.getString("image");
-			out.println("<img src = " + image + " width = \"200\" >");
+		for (int i = 0; i < Math.min(5, resultsArray.length()); i++) {
+			JSONObject movieResult = resultsArray.getJSONObject(i);
+			MovieCard resultMovieCard = new MovieCard(movieResult);
 
 		}
 		return null;
