@@ -3,7 +3,7 @@
 	<form method="get" action="SearchMovieName">
 		<pre>
 		Movie Name : <input type="text" name="inputMovieName">
-		<input type="submit">
+		<input type = "submit" >
 		</pre>
 
 	</form>

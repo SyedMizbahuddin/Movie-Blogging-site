@@ -24,8 +24,13 @@ public class SearchMovieName extends HttpServlet {
 
 	PrintWriter out;
 
+	HttpServletRequest request;
+	HttpServletResponse response;
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		this.request = request;
+		this.response = response;
 		String inputMovieName = request.getParameter("inputMovieName");
 		inputMovieName = refractor(inputMovieName);
 		String outputMovieName = getMovieFromAPI(inputMovieName);
@@ -33,7 +38,7 @@ public class SearchMovieName extends HttpServlet {
 		out = response.getWriter();
 		response.setContentType("text/html");
 
-		String image = parse(outputMovieName);
+		parse(outputMovieName);
 
 //		out.println(outputMovieName);
 	}
@@ -68,7 +73,7 @@ public class SearchMovieName extends HttpServlet {
 		return response.body().toString();
 	}
 
-	String parse(String outputMovieName) {
+	void parse(String outputMovieName) {
 		JSONObject movie = new JSONObject(outputMovieName);
 
 		JSONArray resultsArray = movie.getJSONArray("results");
@@ -76,9 +81,18 @@ public class SearchMovieName extends HttpServlet {
 		for (int i = 0; i < Math.min(5, resultsArray.length()); i++) {
 			JSONObject movieResult = resultsArray.getJSONObject(i);
 			MovieCard resultMovieCard = new MovieCard(movieResult);
-
+			request.setAttribute("movieCard", resultMovieCard);
+			try {
+				request.getRequestDispatcher("MovieCard.jsp").include(request, response);
+			} catch (ServletException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		return null;
+		return;
 	}
 
 }

@@ -24,7 +24,8 @@ public class MovieCard {
 	}
 
 	public void setImage(String image) {
-		this.image = "<img src = " + image + " width = \"200\" >";
+		this.image = "<img src = " + image + " >";
+		// this.image = image;
 	}
 
 	public String getId() {
