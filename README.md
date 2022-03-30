@@ -8,3 +8,4 @@ It has two main parts
 In the first part User has a accounf where user can list out his / her favourite actor ,actress, movies and then whenever a new blog comes up relating to his/her favourite , the blog is shown to the user when he enters the site
 
 This project has been deployed on AWS cloud on tomcat server . This project uses MySQL from AWS EC2 Instance
+Backend : Servlets, JSP
