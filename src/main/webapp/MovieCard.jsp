@@ -10,18 +10,19 @@
 <link rel="stylesheet" href="index.css">
 </head>
 <body>
-	<%
-	ArrayList<MovieCard> resultMovieCards = (ArrayList<MovieCard>) request.getAttribute("resultMovieCards");
-	%>
 	
+	 <%
+    ArrayList<MovieCard> resultMovieCards = (ArrayList<MovieCard>) request.getAttribute("resultMovieCards");
+    %>
+    
 	<c:forEach var="movieCard" items="${resultMovieCards}">
 	
         <form action="SearchMovieData" method="get">
         <input type="text" value= "<c:out value="${movieCard.getId()}" />" name = "inputMovieID" hidden>
         <div class="card">
-            <c:out value="${movieCard.getImage()}" />
+            <img src = "<c:out value="${movieCard.getImage()}" />" >
             <input type="submit" class="submit" value ="">
-            <c:out value="${movieCard.getTitle()}" />
+            <h3><c:out value="${movieCard.getTitle()}" /></h3>
         </div>
     </form>
 

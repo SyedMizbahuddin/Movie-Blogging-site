@@ -16,7 +16,8 @@ public class MovieCard {
 	}
 
 	public void setTitle(String title) {
-		this.title = "<h3>" + title + "</h3>";
+//		this.title = "<h3>" + title + "</h3>";
+		this.title = title;
 	}
 
 	public String getImage() {
@@ -24,8 +25,8 @@ public class MovieCard {
 	}
 
 	public void setImage(String image) {
-		this.image = "<img src = " + image + " >";
-		// this.image = image;
+//		this.image = "<img src = " + image + " >";
+		this.image = image;
 	}
 
 	public String getId() {
