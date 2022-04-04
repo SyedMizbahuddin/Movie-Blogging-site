@@ -32,6 +32,11 @@ public class MovieCard {
 		return id;
 	}
 
+	@Override
+	public String toString() {
+		return "MovieCard [image=" + image + ", title=" + title + ", id=" + id + "]";
+	}
+
 	public void setId(String id) {
 		this.id = id;
 	}

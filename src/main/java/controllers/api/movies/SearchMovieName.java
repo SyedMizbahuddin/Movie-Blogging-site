@@ -6,6 +6,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -78,19 +79,22 @@ public class SearchMovieName extends HttpServlet {
 
 		JSONArray resultsArray = movie.getJSONArray("results");
 
+		ArrayList<MovieCard> resultMovieCards = new ArrayList();
+
 		for (int i = 0; i < Math.min(5, resultsArray.length()); i++) {
 			JSONObject movieResult = resultsArray.getJSONObject(i);
 			MovieCard resultMovieCard = new MovieCard(movieResult);
-			request.setAttribute("movieCard", resultMovieCard);
-			try {
-				request.getRequestDispatcher("MovieCard.jsp").include(request, response);
-			} catch (ServletException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			resultMovieCards.add(resultMovieCard);
+		}
+		request.setAttribute("resultMovieCards", resultMovieCards);
+		try {
+			request.getRequestDispatcher("MovieCard.jsp").include(request, response);
+		} catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return;
 	}
