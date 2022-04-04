@@ -14,9 +14,19 @@
 	ArrayList<MovieCard> resultMovieCards = (ArrayList<MovieCard>) request.getAttribute("resultMovieCards");
 	%>
 	
+	<c:forEach var="movieCard" items="${resultMovieCards}">
 	
-	<c:set var = "i" value = "23" scope = "application"></c:set>
-	<h1><c:out value = "${i}"></c:out></h1>
+        <form action="SearchMovieData" method="get">
+        <input type="text" value= "<c:out value="${movieCard.getId()}" />" name = "inputMovieID" hidden>
+        <div class="card">
+            <c:out value="${movieCard.getImage()}" />
+            <input type="submit" class="submit" value ="">
+            <c:out value="${movieCard.getTitle()}" />
+        </div>
+    </form>
+
+    </c:forEach>
+
 	
 </body>
 </html>
