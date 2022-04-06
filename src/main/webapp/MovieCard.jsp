@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ page import="controllers.api.movies.*"%>
+<%@ page import="models.api.movies.*"%>
 <%@ page import="java.util.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -10,10 +10,6 @@
 <link rel="stylesheet" href="index.css">
 </head>
 <body>
-	
-	 <%
-    ArrayList<MovieCard> resultMovieCards = (ArrayList<MovieCard>) request.getAttribute("resultMovieCards");
-    %>
     
 	<c:forEach var="movieCard" items="${resultMovieCards}">
 	

@@ -1,11 +1,11 @@
-package controllers.api.movies;
+package models.api.movies;
 
 import org.json.JSONObject;
 
 public class MovieCard {
 	private String image, title, id;
 
-	MovieCard(JSONObject Movie) {
+	public MovieCard(JSONObject Movie) {
 		setTitle(Movie.getString("title"));
 		setImage(Movie.getString("image"));
 		setId(Movie.getString("id"));

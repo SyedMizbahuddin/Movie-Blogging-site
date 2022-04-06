@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import models.api.movies.MovieCard;
+
 public class SearchMovieName extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
