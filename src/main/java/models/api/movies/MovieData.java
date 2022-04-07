@@ -10,8 +10,7 @@ public class MovieData {
 	private BoxOffice boxOffice;
 	private ArrayList<MovieCard> similars;
 
-	public MovieData() {
+	public MovieData(String movieDataString) {
 		// TODO Auto-generated constructor stub
-
 	}
 }

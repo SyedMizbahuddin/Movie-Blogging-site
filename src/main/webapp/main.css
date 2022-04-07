@@ -1,0 +1,39 @@
+@charset "ISO-8859-1";
+
+.movieCard-body {
+	background-image: url("https://previews.123rf.com/images/hoperan/hoperan1009/hoperan100900031/7725498--sfondo-per-film-a-tema.jpg");
+  background-color: #cccccc;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.movieCard {
+	position: relative;
+	max-width: 200px;
+}
+
+.movieCard img {
+	width: 200px;
+	height: 300px;
+}
+
+.movieCard .submit {
+	width: 200px;
+	height: 300px;
+	background-color: Transparent;
+	border: none;
+	position: absolute;
+	top: 43.3%;
+	left: 50%;
+	transform: translate(-50%, -55%);
+	-ms-transform: translate(-50%, -50%);
+	cursor: pointer;
+}
+
+.movieCard h3 {
+	font-size: 20pt;
+	background: Transparent;
+}

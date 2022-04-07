@@ -1,7 +1,6 @@
 package controllers.api.movies;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -11,6 +10,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import models.api.movies.MovieData;
 
 public class SearchMovieData extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -23,13 +24,20 @@ public class SearchMovieData extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		PrintWriter out = response.getWriter();
+
 		String inputMovieID = request.getParameter("inputMovieID");
-
 		String outputMovieData = getMovieDataFromAPI(inputMovieID);
-		out.println("hiii");
-		out.println(outputMovieData);
 
+		MovieData movieData = new MovieData(outputMovieData);
+		request.setAttribute("movieData", movieData);
+
+		try {
+			request.getRequestDispatcher("views/api/movies/MovieData.jsp").forward(request, response);
+		} catch (ServletException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	// https://imdb-api.com/en/API/Title/k_i6u6ejxk/
@@ -39,7 +47,7 @@ public class SearchMovieData extends HttpServlet {
 
 		HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create(url)).build();
 		HttpClient client = HttpClient.newBuilder().build();
-		HttpResponse response = null;
+		HttpResponse<String> response = null;
 		try {
 			response = client.send(request, HttpResponse.BodyHandlers.ofString());
 		} catch (IOException e) {

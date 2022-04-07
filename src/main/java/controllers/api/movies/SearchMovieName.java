@@ -1,7 +1,6 @@
 package controllers.api.movies;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -25,25 +24,22 @@ public class SearchMovieName extends HttpServlet {
 		super();
 	}
 
-	PrintWriter out;
-
-	HttpServletRequest request;
-	HttpServletResponse response;
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		this.request = request;
-		this.response = response;
 		String inputMovieName = request.getParameter("inputMovieName");
 		inputMovieName = refractor(inputMovieName);
+
 		String outputMovieName = getMovieFromAPI(inputMovieName);
+		ArrayList<MovieCard> resultMovieCards = parse(outputMovieName);
+		request.setAttribute("resultMovieCards", resultMovieCards);
 
-		out = response.getWriter();
-		response.setContentType("text/html");
-
-		parse(outputMovieName);
-
-//		out.println(outputMovieName);
+		try {
+			request.getRequestDispatcher("views/api/movies/MovieCard.jsp").forward(request, response);
+		} catch (ServletException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public String refractor(String str) {
@@ -63,7 +59,7 @@ public class SearchMovieName extends HttpServlet {
 		String url = "https://imdb-api.com/en/API/SearchMovie/k_i6u6ejxk/" + inputMovieName;
 		HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create(url)).build();
 		HttpClient client = HttpClient.newBuilder().build();
-		HttpResponse response = null;
+		HttpResponse<String> response = null;
 		try {
 			response = client.send(request, HttpResponse.BodyHandlers.ofString());
 		} catch (IOException e) {
@@ -76,29 +72,20 @@ public class SearchMovieName extends HttpServlet {
 		return response.body().toString();
 	}
 
-	void parse(String outputMovieName) {
+	ArrayList<MovieCard> parse(String outputMovieName) {
 		JSONObject movie = new JSONObject(outputMovieName);
 
 		JSONArray resultsArray = movie.getJSONArray("results");
 
-		ArrayList<MovieCard> resultMovieCards = new ArrayList();
+		ArrayList<MovieCard> resultMovieCards = new ArrayList<MovieCard>();
 
-		for (int i = 0; i < Math.min(5, resultsArray.length()); i++) {
+		for (int i = 0; i < Math.min(8, resultsArray.length()); i++) {
 			JSONObject movieResult = resultsArray.getJSONObject(i);
 			MovieCard resultMovieCard = new MovieCard(movieResult);
 			resultMovieCards.add(resultMovieCard);
 		}
-		request.setAttribute("resultMovieCards", resultMovieCards);
-		try {
-			request.getRequestDispatcher("MovieCard.jsp").include(request, response);
-		} catch (ServletException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return;
+
+		return resultMovieCards;
 	}
 
 }
