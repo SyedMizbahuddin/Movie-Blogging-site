@@ -35,6 +35,7 @@ public class SearchMovieName extends HttpServlet {
 		out = response.getWriter();
 
 		String outputMovieName = getMovieFromAPI(inputMovieName);
+		out.println(outputMovieName);
 		ArrayList<MovieCard> resultMovieCards = parse(outputMovieName);
 		request.setAttribute("resultMovieCards", resultMovieCards);
 
@@ -61,7 +62,8 @@ public class SearchMovieName extends HttpServlet {
 	// https://imdb-api.com/en/API/SearchMovie/k_i6u6ejxk/inception 2010
 	String getMovieFromAPI(String inputMovieName) {
 		String key = "k_i6u6ejxk/";
-		key = "k_upvdu2lz/";
+		// key = "k_upvdu2lz/";
+		key = "k_96cn8h5v/";
 		String url = "https://imdb-api.com/en/API/SearchMovie/" + key + inputMovieName;
 		HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create(url)).build();
 		HttpClient client = HttpClient.newBuilder().build();
@@ -74,7 +76,7 @@ public class SearchMovieName extends HttpServlet {
 			e.printStackTrace();
 		}
 //		out.println(response.statusCode());
-//		out.println(url);
+		out.println(url);
 		// System.out.println(response.body());
 		return response.body().toString();
 	}

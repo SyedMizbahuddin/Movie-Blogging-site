@@ -43,7 +43,8 @@ public class SearchMovieData extends HttpServlet {
 	// https://imdb-api.com/en/API/Title/k_i6u6ejxk/
 	String getMovieDataFromAPI(String inputMovieID) {
 		String key = "k_i6u6ejxk/";
-		key = "k_upvdu2lz/";
+		// key = "k_upvdu2lz/";
+		key = "k_96cn8h5v/";
 		String url = "https://imdb-api.com/en/API/Title/" + key + inputMovieID;
 
 		HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create(url)).build();
