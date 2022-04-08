@@ -1,6 +1,7 @@
 package controllers.api.movies;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -24,10 +25,14 @@ public class SearchMovieName extends HttpServlet {
 		super();
 	}
 
+	PrintWriter out;
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String inputMovieName = request.getParameter("inputMovieName");
 		inputMovieName = refractor(inputMovieName);
+
+		out = response.getWriter();
 
 		String outputMovieName = getMovieFromAPI(inputMovieName);
 		ArrayList<MovieCard> resultMovieCards = parse(outputMovieName);
@@ -55,8 +60,9 @@ public class SearchMovieName extends HttpServlet {
 
 	// https://imdb-api.com/en/API/SearchMovie/k_i6u6ejxk/inception 2010
 	String getMovieFromAPI(String inputMovieName) {
-
-		String url = "https://imdb-api.com/en/API/SearchMovie/k_i6u6ejxk/" + inputMovieName;
+		String key = "k_i6u6ejxk/";
+		key = "k_upvdu2lz/";
+		String url = "https://imdb-api.com/en/API/SearchMovie/" + key + inputMovieName;
 		HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create(url)).build();
 		HttpClient client = HttpClient.newBuilder().build();
 		HttpResponse<String> response = null;
@@ -67,7 +73,8 @@ public class SearchMovieName extends HttpServlet {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		// System.out.println(response.statusCode());
+//		out.println(response.statusCode());
+//		out.println(url);
 		// System.out.println(response.body());
 		return response.body().toString();
 	}

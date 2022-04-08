@@ -13,15 +13,16 @@
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="main.css">
+<link rel="stylesheet" type="text/css" href="css/api/movies/movieCard.css">
 
 </head>
 <body class = "movieCard-body">
 
-	<div class="container">
+	
+	<div class="container spaceTop">
 		<div class="row">
 			<c:forEach var="movieCard" items="${resultMovieCards}">
-				<div class="col-3">
+				<div class="col-lg-3 col-md-4">
 					<form action="SearchMovieData" method="get">
 						<input type="text" value="${movieCard.getId()}"
 							name="inputMovieID" hidden>

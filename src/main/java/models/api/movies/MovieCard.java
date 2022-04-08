@@ -5,10 +5,10 @@ import org.json.JSONObject;
 public class MovieCard {
 	private String image, title, id;
 
-	public MovieCard(JSONObject Movie) {
-		setTitle(Movie.getString("title"));
-		setImage(Movie.getString("image"));
-		setId(Movie.getString("id"));
+	public MovieCard(JSONObject movieResult) {
+		setTitle(movieResult.getString("title"));
+		setImage(movieResult.getString("image"));
+		setId(movieResult.getString("id"));
 	}
 
 	public String getTitle() {
@@ -16,7 +16,6 @@ public class MovieCard {
 	}
 
 	public void setTitle(String title) {
-//		this.title = "<h3>" + title + "</h3>";
 		this.title = title;
 	}
 
@@ -25,7 +24,6 @@ public class MovieCard {
 	}
 
 	public void setImage(String image) {
-//		this.image = "<img src = " + image + " >";
 		this.image = image;
 	}
 

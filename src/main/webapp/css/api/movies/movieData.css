@@ -1,0 +1,40 @@
+@charset "ISO-8859-1";
+
+.movieData-body {
+	background-image: url("images/MovieDataBackgroundWhite.jpg");
+	height: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+}
+
+.plot {
+	  font-family: "Lucida Console", "Courier New", monospace;
+	font-weight: 490;
+}
+
+.movieData-img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 200px;
+	height: 300px;
+}
+
+.character {
+	
+}
+
+.character img {
+	width: 80px;
+	height: 100px;
+}
+
+.character .name {
+	font-weight: 500;
+}
+
+.character .character-name {
+	font-weight: 200;
+}
