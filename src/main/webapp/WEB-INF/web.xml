@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="windows-1256"?>
 <web-app>
   <servlet>
   	<servlet-name>SearchMovieName</servlet-name>
@@ -7,12 +8,34 @@
   	<servlet-name>SearchMovieData</servlet-name>
   	<servlet-class>controllers.api.movies.SearchMovieData</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>Login</servlet-name>
+  	<servlet-class>controllers.blogs.Login</servlet-class>
+  </servlet>
+  
+  <servlet>
+  	<servlet-name>SignUp</servlet-name>
+  	<servlet-class>controllers.blogs.SignUp</servlet-class>
+  </servlet>
+  
   <servlet-mapping>
   	<servlet-name>SearchMovieName</servlet-name>
   	<url-pattern>/SearchMovieName</url-pattern>
   </servlet-mapping>
+  
   <servlet-mapping>
   	<servlet-name>SearchMovieData</servlet-name>
   	<url-pattern>/SearchMovieData</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>Login</servlet-name>
+  	<url-pattern>/Login</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>SignUp</servlet-name>
+  	<url-pattern>/SignUp</url-pattern>
+  	
   </servlet-mapping>
 </web-app>
