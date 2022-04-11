@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="windows-1256"?>
 <web-app>
   <servlet>
   	<servlet-name>SearchMovieName</servlet-name>
@@ -7,6 +8,40 @@
   	<servlet-name>SearchMovieData</servlet-name>
   	<servlet-class>controllers.api.movies.SearchMovieData</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>Login</servlet-name>
+  	<servlet-class>controllers.blogs.Login</servlet-class>
+  </servlet>
+  
+  <servlet>
+  	<servlet-name>SignUp</servlet-name>
+  	<servlet-class>controllers.blogs.SignUp</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>Blogs</servlet-name>
+  	<servlet-class>controllers.blogs.Blogs</servlet-class>
+  </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>MyBlogs</display-name>
+  	<servlet-name>MyBlogs</servlet-name>
+  	<servlet-class>controllers.blogs.MyBlogs</servlet-class>
+  </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>NewBlog</display-name>
+  	<servlet-name>NewBlog</servlet-name>
+  	<servlet-class>controllers.blogs.NewBlog</servlet-class>
+  </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>Logout</display-name>
+  	<servlet-name>Logout</servlet-name>
+  	<servlet-class>controllers.blogs.Logout</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>SearchMovieName</servlet-name>
   	<url-pattern>/SearchMovieName</url-pattern>
@@ -15,4 +50,29 @@
   	<servlet-name>SearchMovieData</servlet-name>
   	<url-pattern>/SearchMovieData</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>Login</servlet-name>
+  	<url-pattern>/Login</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>SignUp</servlet-name>
+  	<url-pattern>/SignUp</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>Blogs</servlet-name>
+  	<url-pattern>/Blogs</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>MyBlogs</servlet-name>
+  	<url-pattern>/MyBlogs</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>NewBlog</servlet-name>
+  	<url-pattern>/NewBlog</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>Logout</servlet-name>
+  	<url-pattern>/Logout</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
