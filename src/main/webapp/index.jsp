@@ -10,7 +10,7 @@
 	}
 
 	if(request.getSession().getAttribute("userId") == null){
-		response.sendRedirect("login.jsp");
+		request.getRequestDispatcher("login.jsp").forward(request, response);
 	}
 %>
 
@@ -31,7 +31,9 @@
 
 <title>MovieExpert</title>
 </head>
-<body>
+<body>	
+
+<jsp:include page="header.jsp" />  
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->

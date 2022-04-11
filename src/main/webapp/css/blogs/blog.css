@@ -1,0 +1,36 @@
+@charset "ISO-8859-1";
+
+
+body{
+	background-image: url("images/blogsBackground.jpg");
+     height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+.box{
+    margin-top: 10px;
+    margin-bottom: 25px;
+    padding: 10px 15px;
+    border-bottom: 2px dashed black;
+}
+
+.tags{
+        margin-top: 15px;
+}
+.tags li{
+    display: inline;
+    background-color: #f5d5b0;
+    padding: 5px 8px;
+    margin-right: 4px;
+    border-radius: 15px;
+}
+
+.blog-post-title{
+    background-color: #e6caaa;
+}
+
+.blog-post p{
+    font-size: large;
+}
