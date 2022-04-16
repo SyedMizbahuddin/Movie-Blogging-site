@@ -15,6 +15,8 @@
 </head>
 <body class="movieData-body">
 <jsp:include page="/header.jsp" /> 
+<br>
+<br>
 	<div class="container">
 		<div class="row justify-content-md-center">
 			<div class="col-lg-3 col-md-12">
