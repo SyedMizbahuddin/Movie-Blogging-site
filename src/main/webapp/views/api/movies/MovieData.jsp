@@ -14,7 +14,7 @@
 	href="css/api/movies/movieData.css">
 </head>
 <body class="movieData-body">
-
+<jsp:include page="/header.jsp" /> 
 	<div class="container">
 		<div class="row justify-content-md-center">
 			<div class="col-lg-3 col-md-12">
@@ -51,8 +51,9 @@ Genre           :   <c:forEach var="genre"
 		<h5>Similar Movies :</h5>
 		<c:set var="resultMovieCards" scope="session"
 			value="${movieData.getSimilars()}" />
-		<jsp:include page="MovieCard.jsp" />
+		<jsp:include page="MovieCardData.jsp" />
 	</div>
+<jsp:include page="/footer.html" /> 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"

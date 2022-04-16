@@ -30,11 +30,22 @@ public class MyBlogs extends HttpServlet {
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
 		Connection con = (Connection) request.getSession().getAttribute("Connection");
-		int userId = (Integer) request.getSession().getAttribute("userId");
+		Integer userId = (Integer) request.getSession().getAttribute("userId");
+		if (con == null || userId == null) {
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+		} else {
+			out.println("con not null");
+		}
 		try {
-			Statement statement = con.createStatement();
+			Statement statement = (Statement) request.getSession().getAttribute("Statement");
+
+			if (statement == null) {
+				request.getRequestDispatcher("index.jsp").forward(request, response);
+			} else {
+				out.println("st not null");
+			}
 			String query = "select title, blog from blogs where userId = " + userId + " order by blogId desc limit 5";
-//			out.println(query);
+			out.println(query);
 			ResultSet result = statement.executeQuery(query);
 			ArrayList<Blog> blogsResult = new ArrayList();
 			while (result.next()) {
@@ -43,7 +54,6 @@ public class MyBlogs extends HttpServlet {
 			request.setAttribute("blogsResult", blogsResult);
 			request.getRequestDispatcher("views/blogs/blogs.jsp").forward(request, response);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

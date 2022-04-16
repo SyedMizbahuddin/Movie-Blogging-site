@@ -24,8 +24,22 @@ public class Blogs extends HttpServlet {
 		// TODO Auto-generated method stub
 //		int userId = request.getSession().getAttribute("userId");
 		Connection con = (Connection) request.getSession().getAttribute("Connection");
+		Integer userId = (Integer) request.getSession().getAttribute("userId");
+		if (con == null || userId == null) {
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+		} else {
+			out.println("con not null");
+		}
+
 		try {
-			Statement statement = con.createStatement();
+			Statement statement = (Statement) request.getSession().getAttribute("Statement");
+
+			if (statement == null) {
+				request.getRequestDispatcher("index.jsp").forward(request, response);
+			} else {
+				out.println("st not null");
+			}
+
 			String query = "select title, blog from blogs order by blogId desc limit 5";
 			ResultSet result = statement.executeQuery(query);
 			ArrayList<Blog> blogsResult = new ArrayList();

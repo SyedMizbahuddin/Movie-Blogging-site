@@ -3,6 +3,7 @@ package controllers.blogs;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.Statement;
 
 import javax.servlet.ServletException;
@@ -25,33 +26,46 @@ public class SignUp extends HttpServlet {
 //		out.println("processing");
 		try {
 			Connection con = (Connection) request.getSession().getAttribute("Connection");
+
 			if (con == null) {
-				out.println("connection is null");
+				request.getRequestDispatcher("index.jsp").forward(request, response);
 			} else {
 				out.println("con not null");
 			}
+
 			Statement statement = (Statement) request.getSession().getAttribute("Statement");
+
 			if (statement == null) {
-				out.println("st null");
+				request.getRequestDispatcher("index.jsp").forward(request, response);
 			} else {
 				out.println("st not null");
 			}
+
+			String testUserNameQuery = "select userName from users where userName = '" + userName + "'";
+			ResultSet rs = statement.executeQuery(testUserNameQuery);
+			String status = "signUpSuccess";
+
+			if (rs.next()) {
+				status = "userAlreadyExists";
+			}
+
+			if (status.equals("userAlreadyExists")) {
+				request.setAttribute("status", status);
+				request.getRequestDispatcher("status.jsp").forward(request, response);
+			}
 			String query = "insert into users(userName,userPassword) values('" + userName + "','" + userPassword + "')";
-//			File f1 = new File("insertions.txt");
-//			if (!f1.exists()) {
-//				out.println("entered");
-//				f1.createNewFile();
-//			}
-//			FileWriter fileWritter = new FileWriter(f1.getName(), true);
-//			BufferedWriter bw = new BufferedWriter(fileWritter);
-//			bw.write(query);
 			int rowCount = statement.executeUpdate(query);
 			if (rowCount > 0) {
-				out.println("done");
-				response.sendRedirect("login.jsp");
+				out.println(status);
+				request.setAttribute("status", status);
+				request.getRequestDispatcher("status.jsp").forward(request, response);
 			} else {
-				out.println("failed");
+				status = "signUpFailed";
+				out.println(status);
+				request.setAttribute("status", status);
+				request.getRequestDispatcher("status.jsp").forward(request, response);
 			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

@@ -12,6 +12,9 @@
 		<h2>Sign Up</h2>
 		<form method="post" action="SignUp">
 			<div class="user-box">
+				<input type="text" name="FirstName" required=""> <label>Full Name</label>
+			</div>
+			<div class="user-box">
 				<input type="text" name="userName" required=""> <label>Username</label>
 			</div>
 			<div class="user-box">

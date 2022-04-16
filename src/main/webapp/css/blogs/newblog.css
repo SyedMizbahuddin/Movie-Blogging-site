@@ -1,0 +1,60 @@
+@charset "ISO-8859-1";
+
+
+body{
+	background-image: url("images/blogsBackground.jpg");
+     height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+
+.wrapper {
+  max-width: 75%;
+  margin: auto;
+}
+
+
+textarea {
+    font-size: 1.5rem;
+  width: 100%;
+  min-height: 100px;
+  resize: none;
+  border-radius: 8px;
+  padding: 0.5rem;
+  color: black;
+}
+
+.title {
+    font-size: 1.5rem;
+  width: 100%;
+  min-height: 7px;
+  resize: none;
+  border-radius: 8px;
+  padding: 0.5rem;
+  color: black;
+}
+
+#the-count {
+  float: right;
+  padding: 0.1rem 0 0 0;
+  font-size: 0.875rem;
+}
+
+.submit{
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  padding: 15px 20px;
+  margin-top: 10px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  cursor: pointer;
+
+}

@@ -10,6 +10,9 @@
 <link rel="stylesheet" type="text/css" href="css/blogs/blog.css">
 </head>
 <body>
+<jsp:include page="/header.jsp" />  
+<div style ="position: relative;min-height: 100vh;">
+
 <c:forEach var = "Blog" items = "${blogsResult}">
 
 	<div class = "container">
@@ -29,6 +32,11 @@
 	</div>
 	</div>
 	</c:forEach>
-	
+</div>
+<br>
+<br>
+<br>
+<br>
+<jsp:include page="/footer.html" /> 
 </body>
 </html>

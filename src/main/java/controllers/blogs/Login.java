@@ -29,12 +29,17 @@ public class Login extends HttpServlet {
 		int userId = -1;
 		try {
 			Connection con = (Connection) request.getSession().getAttribute("Connection");
-//			if (con == null) {
-//				out.println("connection is null");
-//			} else {
-//				out.println("ok");
-//			}
+			if (con == null) {
+				request.getRequestDispatcher("index.jsp").forward(request, response);
+			} else {
+				out.println("ok");
+			}
 			Statement statement = (Statement) request.getSession().getAttribute("Statement");
+			if (statement == null) {
+				request.getRequestDispatcher("index.jsp").forward(request, response);
+			} else {
+				out.println("st not null");
+			}
 			String query = "select userId from users where userName = '" + userName + "' and userPassword = '"
 					+ userPassword + "'";
 			out.println(query);
@@ -43,11 +48,13 @@ public class Login extends HttpServlet {
 				userId = result.getInt("userId");
 			}
 			if (userId == -1) {
-//				out.println("no id");
+				String status = "loginFailed";
+				request.setAttribute("status", status);
+				request.getRequestDispatcher("status.jsp").forward(request, response);
 			} else {
 				out.println(userId);
 				request.getSession().setAttribute("userId", userId);
-				response.sendRedirect("index.jsp");
+				request.getRequestDispatcher("index.jsp").forward(request, response);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

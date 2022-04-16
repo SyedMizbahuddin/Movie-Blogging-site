@@ -16,12 +16,32 @@
 <link rel="stylesheet" type="text/css" href="css/api/movies/movieCard.css">
 
 </head>
-<body class = "movieCard-body">
-<jsp:include page="/header.jsp" /> 
+<body class = "movieCard-body"> 
 	
-<jsp:include page="MovieCardData.jsp" /> 
+	<div class="container spaceTop">
+		<div class="row">
+			<c:forEach var="movieCard" items="${resultMovieCards}">
+				<div class="col-lg-3 col-md-4">
+					<form action="SearchMovieData" method="get">
+						<input type="text" value="${movieCard.getId()}"
+							name="inputMovieID" hidden>
+
+						<div class="movieCard">
+							<img src="${movieCard.getImage()}"> <input type="submit"
+								class="submit" value="">
+						</div>
+						<h3>${movieCard.getTitle()}</h3>
+					</form>
+				</div>
+
+			</c:forEach>
+		</div>
+	</div> 
 	
-<jsp:include page="/footer.html" /> 
+	<br>
+	<br>
+	<br>
+	
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
